@@ -1,8 +1,6 @@
 import React, { Component } from 'react'
 import { View, Text, StyleSheet, TouchableOpacity, ActivityIndicator } from 'react-native'
 import { connect } from 'react-redux'
-import Carousel from 'react-native-snap-carousel'
-import { Button } from 'react-native-elements'
 import Icon from 'react-native-vector-icons/FontAwesome'
 import { fetchQuestions, answerQuestion } from './actions'
 import { Colors, Fonts } from '../../Themes'
@@ -128,7 +126,7 @@ const styles = StyleSheet.create({
     borderRadius: 40,
     justifyContent: 'center',
     alignItems: 'center',
-    marginHorizontal: 20
+    marginHorizontal: 45
   },
   buttonFalse: {
     backgroundColor: Colors.black

@@ -37,8 +37,10 @@ export default function reducer (state = INITIAL_STATE, action) {
         error: true
       }
     case ANSWER_QUESTION:
-      const results = state.results.map((result) => {
-        result.isCorrect = action.payload === result.correctAnswer
+      const results = state.results.map((result, index) => {
+        if (index === state.currentQuestionIndex) {
+          result.isCorrect = action.payload === result.correctAnswer
+        }
         return result
       })
       const isLastQuestion = state.results.length === state.currentQuestionIndex + 1
