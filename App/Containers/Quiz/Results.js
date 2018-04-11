@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { View, Text, StyleSheet, FlatList } from 'react-native'
 import { connect } from 'react-redux'
+import { NavigationActions } from 'react-navigation'
 import { fetchQuestions, clearQuestions } from './actions'
 import Button from '../../Components/Button'
 import { Colors, Fonts } from '../../Themes'
@@ -9,7 +10,11 @@ class Results extends Component {
   reset = () => {
     this.props.clearQuestions()
     this.props.fetchQuestions()
-    this.props.navigation.goBack()
+    const resetAction = NavigationActions.reset({
+      index: 0,
+      actions: [NavigationActions.navigate({ routeName: 'Intro' })]
+    })
+    this.props.navigation.dispatch(resetAction)
   }
 
   getScore = () => this.props.quiz.results.filter((result) => result.isCorrect)
