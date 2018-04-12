@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { View, Text, StyleSheet, FlatList } from 'react-native'
 import { connect } from 'react-redux'
 import { NavigationActions } from 'react-navigation'
+import entities from 'entities'
 import { fetchQuestions, clearQuestions } from './actions'
 import Button from '../../Components/Button'
 import { Colors, Fonts } from '../../Themes'
@@ -22,7 +23,7 @@ class Results extends Component {
   renderItem ({ item }) {
     return (
       <View style={[styles.questionContainer, item.isCorrect ? styles.questionContainerCorrect : null]}>
-        <Text style={styles.question}>{item.question}</Text>
+        <Text style={styles.question}>{entities.decodeHTML(item.question)}</Text>
         <Text style={styles.answer}>{item.correctAnswer ? 'TRUE' : 'FALSE'}</Text>
       </View>
     )
