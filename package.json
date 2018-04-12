@@ -13,6 +13,7 @@
   },
   "dependencies": {
     "apisauce": "^0.14.3",
+    "entities": "^1.1.1",
     "identity-obj-proxy": "^3.0.0",
     "prop-types": "^15.6.1",
     "react": "16.3.1",
