@@ -1,4 +1,15 @@
-export function Question (payload) {
+// @flow
+
+export type Question = {
+  category: string,
+  type: string,
+  difficulty: string,
+  question: string,
+  correctAnswer: boolean,
+  isCorrect: ?boolean
+}
+
+export function parseQuestion (payload: Object): Question {
   return {
     category: payload.category,
     type: payload.type,

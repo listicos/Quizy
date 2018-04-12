@@ -6,7 +6,7 @@ import {
   ANSWER_QUESTION,
   CLEAR_QUESTIONS
 } from './constants'
-import { Question } from './models'
+import { parseQuestion } from './models'
 
 const INITIAL_STATE = Immutable({
   results: [],
@@ -28,7 +28,7 @@ export default function reducer (state = INITIAL_STATE, action) {
       return {
         ...state,
         isFetching: false,
-        results: action.payload.data.results.map((result) => Question(result))
+        results: action.payload.data.results.map((result) => parseQuestion(result))
       }
     case FETCH_QUESTIONS_REJECTED:
       return {
