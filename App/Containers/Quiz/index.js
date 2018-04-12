@@ -1,7 +1,11 @@
+// @flow
+
 import React, { Component } from 'react'
 import { View, Text, StyleSheet, TouchableOpacity, ActivityIndicator } from 'react-native'
 import { connect } from 'react-redux'
 import Icon from 'react-native-vector-icons/FontAwesome'
+import PropTypes from 'prop-types'
+import entities from 'entities'
 import { fetchQuestions, answerQuestion } from './actions'
 import { Colors, Fonts } from '../../Themes'
 
@@ -40,7 +44,7 @@ class Quiz extends Component {
           <Text style={styles.category}>{result.category}</Text>
         </View>
         <View style={styles.questionContainer}>
-          <Text style={styles.question}>{result.question}</Text>
+          <Text style={styles.question}>{entities.decodeHTML(result.question)}</Text>
         </View>
         <Text style={styles.currentIndex}>
           {this.props.quiz.currentQuestionIndex + 1} of {this.props.quiz.results.length}
@@ -141,6 +145,12 @@ const styles = StyleSheet.create({
     marginTop: 20
   }
 })
+
+Quiz.propTypes = {
+  fetchQuestions: PropTypes.func.isRequired,
+  answerQuestion: PropTypes.func.isRequired,
+  quiz: PropTypes.object.isRequired
+}
 
 const mapStateToProps = (state) => ({ quiz: state.quiz })
 
