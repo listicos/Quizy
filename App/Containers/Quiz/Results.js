@@ -17,20 +17,18 @@ type ResultsComponent = {
   navigation: Object
 }
 
-class Results extends React.PureComponent<ResultsComponent> {
-  reset = () => {
-    this.props.clearQuestions()
-    this.props.fetchQuestions()
+const Results = ({ clearQuestions, fetchQuestions, navigation, quiz }: ResultsComponent) => {
+  const restartGame = () => {
     const resetAction = NavigationActions.reset({
       index: 0,
       actions: [NavigationActions.navigate({ routeName: 'Intro' })]
     })
-    this.props.navigation.dispatch(resetAction)
+    navigation.dispatch(resetAction)
   }
 
-  getScore = () => this.props.quiz.results.filter((result) => result.isCorrect)
+  const getScore = () => quiz.results.filter((result) => result.isCorrect)
 
-  renderItem ({ item }) {
+  const renderItem = ({ item }) => {
     return (
       <View style={[styles.questionContainer, item.isCorrect ? styles.questionContainerCorrect : null]}>
         <Text style={styles.question}>{entities.decodeHTML(item.question)}</Text>
@@ -39,25 +37,20 @@ class Results extends React.PureComponent<ResultsComponent> {
     )
   }
 
-  render () {
-    const score = this.getScore()
-    return (
-      <View style={styles.container}>
-        <View style={styles.welcomeContainer}>
-          <Text style={styles.welcome}>Your scored</Text>
-          <Text style={styles.welcome}>
-            {score.length} / {this.props.quiz.results.length}
-          </Text>
-          <FlatList
-            keyExtractor={(_, index) => `result__${index}`}
-            data={this.props.quiz.results}
-            renderItem={this.renderItem}
-          />
-        </View>
-        <Button text='PLAY AGAIN' onPress={this.reset} />
+  const score = getScore()
+
+  return (
+    <View style={styles.container}>
+      <View style={styles.welcomeContainer}>
+        <Text style={styles.welcome}>Your scored</Text>
+        <Text style={styles.welcome}>
+          {score.length} / {quiz.results.length}
+        </Text>
+        <FlatList keyExtractor={(_, index) => `result__${index}`} data={quiz.results} renderItem={renderItem} />
       </View>
-    )
-  }
+      <Button text='PLAY AGAIN' onPress={restartGame} />
+    </View>
+  )
 }
 
 const styles = StyleSheet.create({

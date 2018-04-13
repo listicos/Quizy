@@ -8,6 +8,7 @@ export type Question = {
   correctAnswer: boolean,
   isCorrect: ?boolean
 }
+
 export type QuizState = {
   results: Array<Question>,
   isFetching: boolean,
