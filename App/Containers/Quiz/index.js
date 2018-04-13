@@ -1,15 +1,22 @@
 // @flow
 
-import React, { Component } from 'react'
+import React from 'react'
 import { View, Text, StyleSheet, TouchableOpacity, ActivityIndicator } from 'react-native'
 import { connect } from 'react-redux'
 import Icon from 'react-native-vector-icons/FontAwesome'
-import PropTypes from 'prop-types'
 import entities from 'entities'
 import { fetchQuestions, answerQuestion } from './actions'
+import type { QuizState } from './models'
 import { Colors, Fonts } from '../../Themes'
 
-class Quiz extends Component {
+type QuizComponent = {
+  fetchQuestions: Function,
+  answerQuestion: Function,
+  quiz: QuizState,
+  navigation: Object
+}
+
+class Quiz extends React.PureComponent<QuizComponent> {
   componentDidMount () {
     this.props.fetchQuestions()
   }
@@ -145,12 +152,6 @@ const styles = StyleSheet.create({
     marginTop: 20
   }
 })
-
-Quiz.propTypes = {
-  fetchQuestions: PropTypes.func.isRequired,
-  answerQuestion: PropTypes.func.isRequired,
-  quiz: PropTypes.object.isRequired
-}
 
 const mapStateToProps = (state) => ({ quiz: state.quiz })
 

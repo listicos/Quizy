@@ -1,4 +1,6 @@
-import React, { Component } from 'react'
+// @flow
+
+import React from 'react'
 import { View, Text, StyleSheet, FlatList } from 'react-native'
 import { connect } from 'react-redux'
 import { NavigationActions } from 'react-navigation'
@@ -6,8 +8,16 @@ import entities from 'entities'
 import { fetchQuestions, clearQuestions } from './actions'
 import Button from '../../Components/Button'
 import { Colors, Fonts } from '../../Themes'
+import type { QuizState } from './models'
 
-class Results extends Component {
+type ResultsComponent = {
+  clearQuestions: Function,
+  fetchQuestions: Function,
+  quiz: QuizState,
+  navigation: Object
+}
+
+class Results extends React.PureComponent<ResultsComponent> {
   reset = () => {
     this.props.clearQuestions()
     this.props.fetchQuestions()

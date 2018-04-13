@@ -5,14 +5,10 @@ import createStore from '../../Store/Redux'
 
 const store = createStore()
 
-class App extends Component {
-  render () {
-    return (
-      <Provider store={store}>
-        <Root />
-      </Provider>
-    )
-  }
-}
+const App = () => (
+  <Provider store={store}>
+    <Root />
+  </Provider>
+)
 
 export default App

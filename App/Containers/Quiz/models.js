@@ -8,6 +8,12 @@ export type Question = {
   correctAnswer: boolean,
   isCorrect: ?boolean
 }
+export type QuizState = {
+  results: Array<Question>,
+  isFetching: boolean,
+  error: boolean,
+  currentQuestionIndex: number
+}
 
 export function parseQuestion (payload: Object): Question {
   return {
