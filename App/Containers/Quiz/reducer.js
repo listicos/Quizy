@@ -6,7 +6,7 @@ import {
   ANSWER_QUESTION,
   CLEAR_QUESTIONS
 } from './constants'
-import { parseQuestion, QuizState } from './models'
+import { parseQuestion, QuizState } from './types'
 
 const INITIAL_STATE: QuizState = Immutable({
   results: [],

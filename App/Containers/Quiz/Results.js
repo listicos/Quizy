@@ -8,7 +8,7 @@ import entities from 'entities'
 import { fetchQuestions, clearQuestions } from './actions'
 import Button from '../../Components/Button'
 import { Colors, Fonts } from '../../Themes'
-import type { QuizState } from './models'
+import type { QuizState } from './types'
 
 type ResultsComponent = {
   clearQuestions: Function,

@@ -6,7 +6,7 @@ import { connect } from 'react-redux'
 import Icon from 'react-native-vector-icons/FontAwesome'
 import entities from 'entities'
 import { fetchQuestions, answerQuestion } from './actions'
-import type { QuizState } from './models'
+import type { QuizState } from './types'
 import { Colors, Fonts } from '../../Themes'
 
 type QuizComponent = {
