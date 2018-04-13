@@ -9,11 +9,15 @@ import { fetchQuestions, answerQuestion } from './actions'
 import type { QuizState } from './types'
 import { Colors, Fonts } from '../../Themes'
 
+type NavigationState = {
+  navigate: Function
+}
+
 type QuizComponent = {
   fetchQuestions: Function,
   answerQuestion: Function,
   quiz: QuizState,
-  navigation: Object
+  navigation: NavigationState
 }
 
 class Quiz extends React.PureComponent<QuizComponent> {

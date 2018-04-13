@@ -10,11 +10,15 @@ import Button from '../../Components/Button'
 import { Colors, Fonts } from '../../Themes'
 import type { QuizState } from './types'
 
+type NavigationState = {
+  dispatch: Function
+}
+
 type ResultsComponent = {
   clearQuestions: Function,
   fetchQuestions: Function,
   quiz: QuizState,
-  navigation: Object
+  navigation: NavigationState
 }
 
 const Results = ({ clearQuestions, fetchQuestions, navigation, quiz }: ResultsComponent) => {
