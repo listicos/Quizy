@@ -5,7 +5,7 @@ import { View, Text, StyleSheet, FlatList } from 'react-native'
 import { connect } from 'react-redux'
 import { NavigationActions } from 'react-navigation'
 import entities from 'entities'
-import { fetchQuestions, clearQuestions } from './actions'
+import { fetchQuestions } from './actions'
 import Button from '../../Components/Button'
 import { Colors, Fonts } from '../../Themes'
 import type { QuizState } from './types'
@@ -15,13 +15,12 @@ type NavigationState = {
 }
 
 type ResultsComponent = {
-  clearQuestions: Function,
   fetchQuestions: Function,
   quiz: QuizState,
   navigation: NavigationState
 }
 
-const Results = ({ clearQuestions, fetchQuestions, navigation, quiz }: ResultsComponent) => {
+const Results = ({ fetchQuestions, navigation, quiz }: ResultsComponent) => {
   const restartGame = () => {
     const resetAction = NavigationActions.reset({
       index: 0,
@@ -94,8 +93,7 @@ const styles = StyleSheet.create({
 const mapStateToProps = (state) => ({ quiz: state.quiz })
 
 const mapDispatchToProps = (dispatch) => ({
-  fetchQuestions: () => dispatch(fetchQuestions()),
-  clearQuestions: () => dispatch(clearQuestions())
+  fetchQuestions: () => dispatch(fetchQuestions())
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(Results)

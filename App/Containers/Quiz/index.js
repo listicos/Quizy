@@ -1,11 +1,10 @@
 // @flow
-
 import React from 'react'
 import { View, Text, StyleSheet, TouchableOpacity, ActivityIndicator } from 'react-native'
 import { connect } from 'react-redux'
 import Icon from 'react-native-vector-icons/FontAwesome'
 import entities from 'entities'
-import { fetchQuestions, answerQuestion } from './actions'
+import { fetchQuestions, answerQuestion, clearQuestions } from './actions'
 import type { QuizState } from './types'
 import { Colors, Fonts } from '../../Themes'
 
@@ -14,6 +13,7 @@ type NavigationState = {
 }
 
 type QuizComponent = {
+  clearQuestions: Function,
   fetchQuestions: Function,
   answerQuestion: Function,
   quiz: QuizState,
@@ -22,6 +22,7 @@ type QuizComponent = {
 
 class Quiz extends React.PureComponent<QuizComponent> {
   componentDidMount () {
+    // this.props.clearQuestions()
     this.props.fetchQuestions()
   }
 
@@ -32,10 +33,10 @@ class Quiz extends React.PureComponent<QuizComponent> {
   getCurrentResult = () => this.props.quiz.results[this.props.quiz.currentQuestionIndex]
 
   answerQuestion = (answer) => {
-    this.props.answerQuestion(answer)
     if (this.props.quiz.results.length === this.props.quiz.currentQuestionIndex + 1) {
       this.finish()
     }
+    this.props.answerQuestion(answer)
   }
 
   renderContent () {
@@ -70,6 +71,7 @@ class Quiz extends React.PureComponent<QuizComponent> {
             <Icon name='times' size={40} color='white' />
           </TouchableOpacity>
           <TouchableOpacity
+            id='answerButtonYes'
             style={[styles.button, styles.buttonTrue]}
             onPress={() => {
               this.answerQuestion(true)
@@ -161,7 +163,8 @@ const mapStateToProps = (state) => ({ quiz: state.quiz })
 
 const mapDispatchToProps = (dispatch) => ({
   fetchQuestions: () => dispatch(fetchQuestions()),
-  answerQuestion: (answer) => dispatch(answerQuestion(answer))
+  answerQuestion: (answer) => dispatch(answerQuestion(answer)),
+  clearQuestions: () => dispatch(clearQuestions())
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(Quiz)

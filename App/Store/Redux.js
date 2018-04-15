@@ -8,4 +8,11 @@ export const reducers = combineReducers({
   quiz: QuizReducer
 })
 
-export default () => createStore(reducers, {}, applyMiddleware(thunkMiddleware, promiseMiddleware(), logger))
+export default (loggerEnable) =>
+  createStore(
+    reducers,
+    {},
+    loggerEnable
+      ? applyMiddleware(thunkMiddleware, promiseMiddleware(), logger)
+      : applyMiddleware(thunkMiddleware, promiseMiddleware())
+  )

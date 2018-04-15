@@ -3,7 +3,7 @@ import { Provider } from 'react-redux'
 import Root from './Root'
 import createStore from '../../Store/Redux'
 
-const store = createStore()
+const store = createStore(true)
 
 const App = () => (
   <Provider store={store}>

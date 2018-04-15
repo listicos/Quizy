@@ -1,12 +1,10 @@
 import { FETCH_QUESTIONS, ANSWER_QUESTION, CLEAR_QUESTIONS } from './constants'
-import OpenTDBApi from '../../Services/OpenTDBApi'
-
-const api = OpenTDBApi.create()
+import { openTDBApi } from '../../Store/Api'
 
 export function fetchQuestions () {
   return {
     type: FETCH_QUESTIONS,
-    payload: api.getQuestions()
+    payload: openTDBApi.getQuestions()
   }
 }
 

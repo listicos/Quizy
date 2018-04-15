@@ -12,7 +12,8 @@ const create = (baseURL = 'https://opentdb.com') => {
     api.get(`/api.php?amount=${amount}&difficulty=${difficulty}&type=${type}`)
 
   return {
-    getQuestions
+    getQuestions,
+    axiosInstance: api.axiosInstance
   }
 }
 

@@ -2,7 +2,6 @@
 
 exports[`Render Results 1`] = `
 <Results
-  clearQuestions={[Function]}
   fetchQuestions={[Function]}
   store={
     Object {
