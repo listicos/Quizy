@@ -1,18 +1,18 @@
 import 'react-native'
 import React from 'react'
-import { shallow } from 'enzyme'
-import configureStore from 'redux-mock-store'
+import renderer from 'react-test-renderer'
 import Results from '../Results'
+import createStore from '../../../Store/Redux'
 
-const initialState = {}
-const mockStore = configureStore()
-let store
+describe('Quiz Container', () => {
+  let store
 
-beforeEach(() => {
-  store = mockStore(initialState)
-})
+  beforeEach(() => {
+    store = createStore(false)
+  })
 
-test('Render Results', () => {
-  const wrapper = shallow(<Results store={store} />)
-  expect(wrapper).toMatchSnapshot()
+  it('Renders Results', () => {
+    const ResultsComponent = renderer.create(<Results store={store} />)
+    expect(ResultsComponent).toMatchSnapshot()
+  })
 })

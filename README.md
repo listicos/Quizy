@@ -14,4 +14,3 @@
 
 ### TODO
 1. I18n to all texts
-2. Tests coverage at least 80%
