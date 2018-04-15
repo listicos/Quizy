@@ -22,7 +22,7 @@ type QuizComponent = {
 
 class Quiz extends React.PureComponent<QuizComponent> {
   componentDidMount () {
-    // this.props.clearQuestions()
+    this.props.clearQuestions()
     this.props.fetchQuestions()
   }
 
